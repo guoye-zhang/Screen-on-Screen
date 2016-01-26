@@ -59,7 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Utility.updateDisplays()
         screenMenu.removeAllItems()
         let displayNo = Utility.displayNo
-        for (index, display) in enumerate(Utility.displays) {
+        for (index, display) in Utility.displays.enumerate() {
             let item = NSMenuItem(title: "\(index)", action: "display:", keyEquivalent: "")
             item.tag = index
             if index == displayNo {
@@ -70,7 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateZoom() {
-        for item in zoomMenu.itemArray as! [NSMenuItem] {
+        for item in zoomMenu.itemArray {
             item.state = NSOffState
         }
         switch Utility.scale {

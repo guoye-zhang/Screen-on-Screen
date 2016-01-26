@@ -69,10 +69,10 @@ class ViewController: NSViewController {
             self.updateSize()
         }
         if Utility.onTop {
-            view.window!.level = Int(CGWindowLevelForKey(Int32(kCGFloatingWindowLevelKey)))
+            view.window!.level = Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
         }
         notificationCenter.addObserverForName(Utility.Notification.OnTopChange, object: nil, queue: nil) { _ in
-            self.view.window!.level = Int(CGWindowLevelForKey(Int32(Utility.onTop ? kCGFloatingWindowLevelKey : kCGNormalWindowLevelKey)))
+            self.view.window!.level = Int(CGWindowLevelForKey(Utility.onTop ? .FloatingWindowLevelKey : .NormalWindowLevelKey))
         }
     }
     

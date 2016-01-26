@@ -1,0 +1,75 @@
+
+/* Class = "NSMenuItem"; title = "Screen on Screen"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "退出 Screen on Screen"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "退出 Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "5QF-Oa-p0T"; */
+"5QF-Oa-p0T.title" = "缩放";
+
+/* Class = "NSMenuItem"; title = "About Screen on Screen"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "关于 Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "50%"; ObjectID = "6dh-zS-Vam"; */
+"6dh-zS-Vam.title" = "50%";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "偏好设置…";
+
+/* Class = "NSWindow"; title = "Screen on Screen"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "全部显示";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
+"LE2-aR-0XJ.title" = "前置全部窗口";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "服务";
+
+/* Class = "NSMenuItem"; title = "隐藏 Screen on Screen"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "隐藏 Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "Always on Top"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "置顶";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "窗口";
+
+/* Class = "NSMenuItem"; title = "隐藏其他"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "隐藏其他";
+
+/* Class = "NSMenu"; title = "Zoom"; ObjectID = "W48-6f-4Dl"; */
+"W48-6f-4Dl.title" = "缩放";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "窗口";
+
+/* Class = "NSMenu"; title = "Screen"; ObjectID = "bib-Uj-vzu"; */
+"bib-Uj-vzu.title" = "屏幕";
+
+/* Class = "NSMenuItem"; title = "Screen"; ObjectID = "dMs-cI-mzQ"; */
+"dMs-cI-mzQ.title" = "屏幕";
+
+/* Class = "NSMenuItem"; title = "25%"; ObjectID = "dRJ-4n-Yzg"; */
+"dRJ-4n-Yzg.title" = "25%";
+
+/* Class = "NSMenuItem"; title = "33%"; ObjectID = "gVA-U4-sdL"; */
+"gVA-U4-sdL.title" = "33%";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "服务";
+
+/* Class = "NSMenu"; title = "Screen on Screen"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "Screen on Screen";
+
+/* Class = "NSMenuItem"; title = "75%"; ObjectID = "uRl-iY-unG"; */
+"uRl-iY-unG.title" = "75%";
+
+/* Class = "NSMenuItem"; title = "100%"; ObjectID = "x3v-GG-iWU"; */
+"x3v-GG-iWU.title" = "100%";

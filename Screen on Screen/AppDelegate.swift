@@ -59,8 +59,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Utility.updateDisplays()
         screenMenu.removeAllItems()
         let displayNo = Utility.displayNo
-        for (index, display) in Utility.displays.enumerate() {
-            let item = NSMenuItem(title: "\(index)", action: "display:", keyEquivalent: "")
+        for index in Utility.displays.indices {
+            let item = NSMenuItem(title: "\(index)", action: #selector(AppDelegate.display(_:)), keyEquivalent: "")
             item.tag = index
             if index == displayNo {
                 item.state = NSOnState

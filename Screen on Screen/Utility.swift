@@ -54,7 +54,7 @@ struct Utility {
     private static let notificationCenter = NSNotificationCenter.defaultCenter()
     
     static func updateDisplays() {
-        let screens = NSScreen.screens() as? [NSScreen] ?? []
+        let screens = NSScreen.screens() ?? []
         displays = screens.map { ($0.deviceDescription["NSScreenNumber"] as! NSNumber).unsignedIntValue }
         if displays.count > 1 && displayNo == 0 {
             displayNo = 1

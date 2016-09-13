@@ -13,15 +13,15 @@ struct Utility {
     
     static var displayNo: Int {
         get {
-            let displayNo = userDefaults.integerForKey(Keys.Display)
+            let displayNo = UserDefaults.standard.integer(forKey: Keys.display)
             if displayNo >= displays.count {
                 return displays.count > 1 ? 1 : 0
             }
             return displayNo
         }
         set {
-            userDefaults.setInteger(newValue, forKey: Keys.Display)
-            notificationCenter.postNotificationName(Notification.DisplayChange, object: nil)
+            UserDefaults.standard.set(newValue, forKey: Keys.display)
+            NotificationCenter.default.post(name: .displayChange, object: nil)
         }
     }
     
@@ -31,47 +31,44 @@ struct Utility {
     
     static var scale: Double {
         get {
-            let scale = userDefaults.doubleForKey(Keys.Scale)
+            let scale = UserDefaults.standard.double(forKey: Keys.scale)
             return scale == 0 ? 0.5 : scale
         }
         set {
-            userDefaults.setDouble(newValue, forKey: Keys.Scale)
-            notificationCenter.postNotificationName(Notification.ScaleChange, object: nil)
+            UserDefaults.standard.set(newValue, forKey: Keys.scale)
+            NotificationCenter.default.post(name: .scaleChange, object: nil)
         }
     }
     
     static var onTop: Bool {
         get {
-            return userDefaults.boolForKey(Keys.OnTop)
+            return UserDefaults.standard.bool(forKey: Keys.onTop)
         }
         set {
-            userDefaults.setBool(newValue, forKey: Keys.OnTop)
-            notificationCenter.postNotificationName(Notification.OnTopChange, object: nil)
+            UserDefaults.standard.set(newValue, forKey: Keys.onTop)
+            NotificationCenter.default.post(name: .onTopChange, object: nil)
         }
     }
     
-    private static let userDefaults = NSUserDefaults.standardUserDefaults()
-    private static let notificationCenter = NSNotificationCenter.defaultCenter()
-    
     static func updateDisplays() {
         let screens = NSScreen.screens() ?? []
-        displays = screens.map { ($0.deviceDescription["NSScreenNumber"] as! NSNumber).unsignedIntValue }
+        displays = screens.map { ($0.deviceDescription["NSScreenNumber"] as! NSNumber).uint32Value }
         if displays.count > 1 && displayNo == 0 {
             displayNo = 1
         } else {
-            notificationCenter.postNotificationName(Notification.DisplayChange, object: nil)
+            NotificationCenter.default.post(name: .displayChange, object: nil)
         }
     }
     
     private struct Keys {
-        static let Display = "Display"
-        static let Scale = "Scale"
-        static let OnTop = "OnTop"
+        static let display = "Display"
+        static let scale = "Scale"
+        static let onTop = "OnTop"
     }
-    
-    struct Notification {
-        static let DisplayChange = "DisplayChange"
-        static let ScaleChange = "ScaleChange"
-        static let OnTopChange = "OnTopChange"
-    }
+}
+
+extension Notification.Name {
+    static let displayChange = Notification.Name("DisplayChange")
+    static let scaleChange = Notification.Name("ScaleChange")
+    static let onTopChange = Notification.Name("OnTopChange")
 }

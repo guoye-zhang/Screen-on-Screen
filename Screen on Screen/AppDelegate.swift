@@ -14,12 +14,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var zoomMenu: NSMenu!
     @IBOutlet weak var onTopMenuItem: NSMenuItem!
     
-    private let notificationCenter = NSNotificationCenter.defaultCenter()
-    
-    func applicationDidFinishLaunching(notification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         updateDisplays()
         updateZoom()
-        notificationCenter.addObserverForName(Utility.Notification.ScaleChange, object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: .scaleChange, object: nil, queue: nil) { _ in
             self.updateZoom()
         }
         if Utility.onTop {
@@ -27,25 +25,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
     
-    func applicationDidChangeScreenParameters(notification: NSNotification) {
+    func applicationDidChangeScreenParameters(_ notification: Notification) {
         updateDisplays()
     }
     
-    func display(sender: NSMenuItem) {
-        screenMenu.itemAtIndex(Utility.displayNo)?.state = NSOffState
+    func display(_ sender: NSMenuItem) {
+        screenMenu.item(at: Utility.displayNo)?.state = NSOffState
         Utility.displayNo = sender.tag
-        screenMenu.itemAtIndex(Utility.displayNo)?.state = NSOnState
+        screenMenu.item(at: Utility.displayNo)?.state = NSOnState
     }
     
-    @IBAction func zoom(sender: NSMenuItem) {
+    @IBAction func zoom(_ sender: NSMenuItem) {
         Utility.scale = Double(sender.tag) / 100
     }
     
-    @IBAction func top(sender: NSMenuItem) {
+    @IBAction func top(_ sender: NSMenuItem) {
         if sender.state == NSOffState {
             Utility.onTop = true
             sender.state = NSOnState
@@ -70,20 +68,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateZoom() {
-        for item in zoomMenu.itemArray {
+        for item in zoomMenu.items {
             item.state = NSOffState
         }
         switch Utility.scale {
         case 1:
-            zoomMenu.itemAtIndex(0)!.state = NSOnState
+            zoomMenu.item(at: 0)!.state = NSOnState
         case 0.75:
-            zoomMenu.itemAtIndex(1)!.state = NSOnState
+            zoomMenu.item(at: 1)!.state = NSOnState
         case 0.5:
-            zoomMenu.itemAtIndex(2)!.state = NSOnState
+            zoomMenu.item(at: 2)!.state = NSOnState
         case 0.33:
-            zoomMenu.itemAtIndex(3)!.state = NSOnState
+            zoomMenu.item(at: 3)!.state = NSOnState
         case 0.25:
-            zoomMenu.itemAtIndex(4)!.state = NSOnState
+            zoomMenu.item(at: 4)!.state = NSOnState
         default: break
         }
     }

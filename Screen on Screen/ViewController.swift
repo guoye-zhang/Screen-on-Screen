@@ -53,26 +53,24 @@ class ViewController: NSViewController {
         }
     }
     
-    private let notificationCenter = NSNotificationCenter.defaultCenter()
-    
     override func viewWillAppear() {
         super.viewWillAppear()
-        view.window!.movableByWindowBackground = true
-        view.layer!.backgroundColor = NSColor.blackColor().CGColor
-        notificationCenter.addObserverForName(Utility.Notification.DisplayChange, object: nil, queue: nil) { _ in
+        view.window!.isMovableByWindowBackground = true
+        view.layer!.backgroundColor = NSColor.black.cgColor
+        NotificationCenter.default.addObserver(forName: .displayChange, object: nil, queue: nil) { _ in
             if self.displayID != Utility.displayID {
                 self.displayID = Utility.displayID
             }
             self.updateSize()
         }
-        notificationCenter.addObserverForName(Utility.Notification.ScaleChange, object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: .scaleChange, object: nil, queue: nil) { _ in
             self.updateSize()
         }
         if Utility.onTop {
-            view.window!.level = Int(CGWindowLevelForKey(.FloatingWindowLevelKey))
+            view.window!.level = Int(CGWindowLevelForKey(.floatingWindow))
         }
-        notificationCenter.addObserverForName(Utility.Notification.OnTopChange, object: nil, queue: nil) { _ in
-            self.view.window!.level = Int(CGWindowLevelForKey(Utility.onTop ? .FloatingWindowLevelKey : .NormalWindowLevelKey))
+        NotificationCenter.default.addObserver(forName: .onTopChange, object: nil, queue: nil) { _ in
+            self.view.window!.level = Int(CGWindowLevelForKey(Utility.onTop ? .floatingWindow : .normalWindow))
         }
     }
     
@@ -89,7 +87,7 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func scale(sender: NSMagnificationGestureRecognizer) {
+    @IBAction func scale(_ sender: NSMagnificationGestureRecognizer) {
         Utility.scale += Double(sender.magnification) / 50
     }
 }

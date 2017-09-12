@@ -96,7 +96,7 @@
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Shandong University";
+				ORGANIZATIONNAME = "Guoye Zhang";
 				TargetAttributes = {
 					E2E48A501B1E96E70023D48D = {
 						CreatedOnToolsVersion = 6.3.2;

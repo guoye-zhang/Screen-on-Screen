@@ -2,15 +2,15 @@
 //  ViewController.swift
 //  ProjectorViewer
 //
-//  Created by 张国晔 on 15/6/3.
-//  Copyright (c) 2015年 Shandong University. All rights reserved.
+//  Created by Guoye Zhang on 15/6/3.
+//  Copyright (c) 2015 Guoye Zhang. All rights reserved.
 //
 
 import Cocoa
 import AVFoundation
 
 class ViewController: NSViewController {
-    var captureLayer: CALayer? {
+    private var captureLayer: CALayer? {
         didSet {
             oldValue?.removeFromSuperlayer()
             if let captureLayer = captureLayer {
@@ -19,7 +19,7 @@ class ViewController: NSViewController {
             }
         }
     }
-    var captureSession: AVCaptureSession? {
+    private var captureSession: AVCaptureSession? {
         didSet {
             oldValue?.stopRunning()
             if let captureSession = captureSession {
@@ -30,15 +30,12 @@ class ViewController: NSViewController {
             }
         }
     }
-    var displaySize: NSSize? {
+    private var displaySize: NSSize? {
         didSet {
-            if let displaySize = displaySize {
-                preferredContentSize = displaySize
-                updateSize()
-            }
+            updateSize()
         }
     }
-    var displayID: CGDirectDisplayID? {
+    private var displayID: CGDirectDisplayID? {
         didSet {
             if let displayID = displayID {
                 let captureSession = AVCaptureSession()
@@ -56,7 +53,7 @@ class ViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         view.window!.isMovableByWindowBackground = true
-        view.layer!.backgroundColor = NSColor.black.cgColor
+        view.layer!.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         NotificationCenter.default.addObserver(forName: .displayChange, object: nil, queue: nil) { _ in
             if self.displayID != Utility.displayID {
                 self.displayID = Utility.displayID
@@ -67,10 +64,10 @@ class ViewController: NSViewController {
             self.updateSize()
         }
         if Utility.onTop {
-            view.window!.level = Int(CGWindowLevelForKey(.floatingWindow))
+            view.window!.level = .floating
         }
         NotificationCenter.default.addObserver(forName: .onTopChange, object: nil, queue: nil) { _ in
-            self.view.window!.level = Int(CGWindowLevelForKey(Utility.onTop ? .floatingWindow : .normalWindow))
+            self.view.window!.level = Utility.onTop ? .floating : .normal
         }
     }
     
@@ -81,14 +78,15 @@ class ViewController: NSViewController {
         CATransaction.commit()
     }
     
-    func updateSize() {
+    private func updateSize() {
         if let displaySize = displaySize {
-            view.window?.setContentSize(displaySize * CGFloat(Utility.scale))
+            view.window!.setContentSize(displaySize * CGFloat(Utility.scale))
         }
     }
     
     @IBAction func scale(_ sender: NSMagnificationGestureRecognizer) {
-        Utility.scale += Double(sender.magnification) / 50
+        Utility.scale += Double(sender.magnification) / 5
+        sender.magnification = 0
     }
 }
 

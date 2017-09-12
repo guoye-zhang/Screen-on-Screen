@@ -2,8 +2,8 @@
 //  Utility.swift
 //  ProjectorViewer
 //
-//  Created by 张国晔 on 15/6/3.
-//  Copyright (c) 2015年 Shandong University. All rights reserved.
+//  Created by Guoye Zhang on 15/6/3.
+//  Copyright (c) 2015 Guoye Zhang. All rights reserved.
 //
 
 import Cocoa
@@ -51,8 +51,7 @@ struct Utility {
     }
     
     static func updateDisplays() {
-        let screens = NSScreen.screens() ?? []
-        displays = screens.map { ($0.deviceDescription["NSScreenNumber"] as! NSNumber).uint32Value }
+        displays = NSScreen.screens.flatMap { $0.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID }
         if displays.count > 1 && displayNo == 0 {
             displayNo = 1
         } else {

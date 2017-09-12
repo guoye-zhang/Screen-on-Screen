@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ProjectorViewer
 //
-//  Created by 张国晔 on 15/6/3.
-//  Copyright (c) 2015年 Shandong University. All rights reserved.
+//  Created by Guoye Zhang on 15/6/3.
+//  Copyright (c) 2015 Guoye Zhang. All rights reserved.
 //
 
 import Cocoa
@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.updateZoom()
         }
         if Utility.onTop {
-            onTopMenuItem.state = NSOnState
+            onTopMenuItem.state = .on
         }
     }
     
@@ -33,10 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateDisplays()
     }
     
-    func display(_ sender: NSMenuItem) {
-        screenMenu.item(at: Utility.displayNo)?.state = NSOffState
+    @objc func display(_ sender: NSMenuItem) {
+        screenMenu.item(at: Utility.displayNo)?.state = .off
         Utility.displayNo = sender.tag
-        screenMenu.item(at: Utility.displayNo)?.state = NSOnState
+        screenMenu.item(at: Utility.displayNo)?.state = .on
     }
     
     @IBAction func zoom(_ sender: NSMenuItem) {
@@ -44,16 +44,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func top(_ sender: NSMenuItem) {
-        if sender.state == NSOffState {
+        if sender.state == .off {
             Utility.onTop = true
-            sender.state = NSOnState
+            sender.state = .on
         } else {
             Utility.onTop = false
-            sender.state = NSOffState
+            sender.state = .off
         }
     }
     
-    func updateDisplays() {
+    private func updateDisplays() {
         Utility.updateDisplays()
         screenMenu.removeAllItems()
         let displayNo = Utility.displayNo
@@ -61,27 +61,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let item = NSMenuItem(title: "\(index)", action: #selector(AppDelegate.display(_:)), keyEquivalent: "")
             item.tag = index
             if index == displayNo {
-                item.state = NSOnState
+                item.state = .on
             }
             screenMenu.addItem(item)
         }
     }
     
-    func updateZoom() {
+    private func updateZoom() {
         for item in zoomMenu.items {
-            item.state = NSOffState
+            item.state = .off
         }
         switch Utility.scale {
         case 1:
-            zoomMenu.item(at: 0)!.state = NSOnState
+            zoomMenu.item(at: 0)!.state = .on
         case 0.75:
-            zoomMenu.item(at: 1)!.state = NSOnState
+            zoomMenu.item(at: 1)!.state = .on
         case 0.5:
-            zoomMenu.item(at: 2)!.state = NSOnState
+            zoomMenu.item(at: 2)!.state = .on
         case 0.33:
-            zoomMenu.item(at: 3)!.state = NSOnState
+            zoomMenu.item(at: 3)!.state = .on
         case 0.25:
-            zoomMenu.item(at: 4)!.state = NSOnState
+            zoomMenu.item(at: 4)!.state = .on
         default: break
         }
     }

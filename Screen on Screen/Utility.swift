@@ -51,7 +51,7 @@ struct Utility {
     }
     
     static func updateDisplays() {
-        displays = NSScreen.screens.flatMap { $0.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID }
+        displays = NSScreen.screens.compactMap { $0.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID }
         if displays.count > 1 && displayNo == 0 {
             displayNo = 1
         } else {
